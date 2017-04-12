@@ -16,17 +16,3 @@ public class EventorApplication {
 	}
 
 }
-//
-//@ComponentScan
-//@EnableAutoConfiguration
-//public class EventorApplication extends SpringBootServletInitializer {
-//
-//	@Override
-//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//		return application.sources(EventorApplication.class);
-//	}
-//
-//	public static void main(String[] args) {
-//		SpringApplication.run(EventorApplication.class, args);
-//	}
-//}
