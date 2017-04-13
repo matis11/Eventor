@@ -8,7 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 
 /**
  * Event Repository for CRUD operations.
- * @return CRUD wrapper for events
  */
 public interface EventRepository extends CrudRepository<Event, Long> {
 

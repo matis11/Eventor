@@ -7,9 +7,8 @@ import javax.persistence.Id;
 
 /**
  * Basic entity for event handling. Annotated as default Spring model class.
- *
- * @return Event
  */
+
 @Entity
 public class Event {
     @Id
@@ -24,7 +23,6 @@ public class Event {
      * Create new event
      * @param name Event name
      * @param description Event description
-     * @return Event
      */
     public Event(String name, String description) {
         this.name = name;
