@@ -24,9 +24,11 @@ public class Event {
      * @param name Event name
      * @param description Event description
      */
-    public Event(String name, String description) {
+    public Event(String name, String description, Integer level, Integer seatsNumber) {
         this.name = name;
         this.description = description;
+        this.level = level;
+        this.seatsNumber = seatsNumber;
     }
 
     /**

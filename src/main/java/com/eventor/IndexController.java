@@ -6,11 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 
+import java.util.Map;
 import com.eventor.model.entity.Event;
 import com.eventor.model.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
@@ -27,44 +31,67 @@ public class IndexController {
      * Function for displaying .html content.
      * @return String containing the name of .html file to display.
      */
-    @RequestMapping("/")
-    public String index() {
-        Event event = new Event("Retro", "Co się udało?");
-        eventRepository.save(event);
+    @RequestMapping("/index")
+    public String index(Map<String, Object> model, @RequestParam(value="success", required = false, defaultValue = "0") String success) {
+//        Event event = new Event("Swift 3.0 iOS", "Jakis tytul", 2, 200);
+//        eventRepository.save(event);
+
+        model.put("success", success);
+        boolean emptyResult = true;
+        Iterable<Event> events = eventRepository.findAll();
+        for (Event event : events) {
+            emptyResult = false;
+        }
+
+        model.put("message", events);
+        model.put("emptyResult", emptyResult);
+
         return "index";
     }
+
+
+    @RequestMapping("/createDatabase")
+    public String createDatabase() {
+        Event event = new Event("Swift 3.0 iOS", "Jakis tytul", 2, 200);
+        eventRepository.save(event);
+        event = new Event("C# kurs dla poczatkujacych", "Najlepszy kurs!", 1, 100);
+        eventRepository.save(event);
+        return "createDatabase";
+    }
+
+
 
     /**
      *  Function responsible for connection to SQL Database
      */
-    public void connectToDB() {
-        String url = "jdbc:sqlserver://eventor.database.windows.net:1433;database=EventorDB;user=pablo;password=Eventor123;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";//String.format("jdbc:sqlserver://%s.database.windows.net:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-        Connection connection = null;
-
-        try {
-            connection = DriverManager.getConnection(url);
-            String schema = connection.getSchema();
-            System.out.println("Successful connection - Schema: " + schema);
-
-            System.out.println("Query data example:");
-            System.out.println("=========================================");
-
-            // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT * FROM eventor.users";
-
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(selectSql)) {
-
-                while (resultSet.next())
-                {
-                    System.out.println(resultSet.getString(1) + " "
-                            + resultSet.getString(2));
-                }
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void connectToDB() {
+//        String url = "jdbc:sqlserver://eventor.database.windows.net:1433;database=EventorDB;user=pablo;password=password!23;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";//String.format("jdbc:sqlserver://%s.database.windows.net:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+//        Connection connection = null;
+//
+//        try {
+//            connection = DriverManager.getConnection(url);
+//            String schema = connection.getSchema();
+//            System.out.println("Successful connection - Schema: " + schema);
+//
+//            System.out.println("Query data example:");
+//            System.out.println("=========================================");
+//
+//            // Create and execute a SELECT SQL statement.
+//            String selectSql = "SELECT * FROM eventor.users";
+//
+//            try (Statement statement = connection.createStatement();
+//                 ResultSet resultSet = statement.executeQuery(selectSql)) {
+//
+//                while (resultSet.next())
+//                {
+//                    System.out.println(resultSet.getString(1) + " "
+//                            + resultSet.getString(2));
+//                }
+//            }
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

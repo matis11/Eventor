@@ -27,16 +27,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#" >Eventor</a>
+                <a class="navbar-brand" href="/" >Eventor</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">All Events</a>
+                        <a href="/allEvents">All Events</a>
                     </li>
                     <li>
-                        <a href="#">Register</a>
+                        <a href="/newUser">Register</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
@@ -55,12 +55,31 @@
 
             <div class="row">
                 <div class="col-lg-12">
+
+
+
                     <div class="intro-message" id="">
+
+
+                        <div th:if="${success} == '1'">
+                            <div class="alert alert-success">
+                                <strong>New user created successfuly!</strong>
+                            </div>
+                        </div>
+
                         <h1>Search for event</h1>
                         <input type="text" class="form-control" placeholder="Text input"/>
                         <button class="btn" style="width: 212px; overflow: hidden; position: relative; margin: 20px;">Search!</button>
                         <hr class="intro-divider"/>
-                        <div class="list-group" style="height: 307px; overflow: hidden;"><a href="#" class="list-group-item disabled">Found events</a><a href="#" class="list-group-item">First event</a><a href="#" class="list-group-item">Second event</a>
+                        <div class="list-group" style="height: 307px; overflow: hidden;">
+
+
+                            <span th:if="${emptyResult} == true"  th:text="'EmptyResult!'"></span>
+                            <a href="#" class="list-group-item disabled">Found events</a>
+
+                            <div th:each="mes : ${message}">
+                                <a href="#" class="list-group-item" th:text="'Message: ' + ${mes.name}"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
