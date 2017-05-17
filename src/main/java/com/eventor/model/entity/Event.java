@@ -1,9 +1,6 @@
 package com.eventor.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Basic entity for event handling. Annotated as default Spring model class.
@@ -29,6 +26,16 @@ public class Event {
         this.description = description;
         this.level = level;
         this.seatsNumber = seatsNumber;
+    }
+
+    /**
+     * Create new event [default constructor]
+     */
+    public Event() {
+        this.name = "";
+        this.description = "";
+        this.level = null;
+        this.seatsNumber = null;
     }
 
     /**

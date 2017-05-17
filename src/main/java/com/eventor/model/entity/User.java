@@ -1,9 +1,8 @@
 package com.eventor.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Basic entity for event handling. Annotated as default Spring model class.
@@ -16,6 +15,10 @@ public class User {
     private Integer id;
     private String name;
     private String password;
+    //private List events = new ArrayList();
+
+
+
 
     /**
      * Create new user
@@ -25,11 +28,13 @@ public class User {
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+        //events = new ArrayList<>();
     }
 
     public User() {
         this.name = "";
         this.password = "";
+        //events = new ArrayList<>();
     }
 
     /**
@@ -67,5 +72,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    /**
+//     * User events description
+//     * @return User events
+//     */
+//
+//
+//    public List getEvents() {
+//        return events;
+//    }
+
+
 
 }

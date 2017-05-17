@@ -40,9 +40,11 @@ public class NewUserController {
     }
 
     @RequestMapping(value = "/processForm", method= RequestMethod.POST)
-    public String processForm(@ModelAttribute(value="user") User user) {
+    public String processForm(@ModelAttribute(value="user") User user, Map<String, Object> model) {
         userRepository.save(user);
-        return "index?success=1";
+        model.put("type", "user");
+        model.put("success", 1);
+        return "result"; //shoud be success = 1
     }
 
 

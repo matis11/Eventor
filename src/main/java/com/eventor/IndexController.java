@@ -33,8 +33,6 @@ public class IndexController {
      */
     @RequestMapping("/index")
     public String index(Map<String, Object> model, @RequestParam(value="success", required = false, defaultValue = "0") String success) {
-//        Event event = new Event("Swift 3.0 iOS", "Jakis tytul", 2, 200);
-//        eventRepository.save(event);
 
         model.put("success", success);
         boolean emptyResult = true;
@@ -58,6 +56,7 @@ public class IndexController {
         eventRepository.save(event);
         return "createDatabase";
     }
+
 
 
 

@@ -56,11 +56,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="intro-message" id="">
-                    <h1>Create new account</h1>
-                    <form action="#" th:action="@{/processForm}" th:object="${user}" method="post">
+                    <h1>Create new Event</h1>
+                    <form action="#" th:action="@{/processFormEvent}" th:object="${event}" method="post">
                         <input type="text" class="form-control" placeholder="Name" th:field="*{name}" />
-                        <input type="password" class="form-control" placeholder="Password" th:field="*{password}" />
-                        <input type="submit" class="btn btn-info" value="Zarejestruj!"/>
+                        <input type="text" class="form-control" placeholder="Description" th:field="*{description}" />
+                        <input type="text" class="form-control" placeholder="Level" th:field="*{level}" />
+                        <input type="text" class="form-control" placeholder="Seats" th:field="*{seatsNumber}" />
+                        <input type="submit" class="btn btn-info" value="Dodaj do bazy!"/>
                     </form>
                 </div>
             </div>
