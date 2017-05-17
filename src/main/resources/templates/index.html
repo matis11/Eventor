@@ -71,8 +71,13 @@
                         </div>
 
                         <h1>Search for event</h1>
-                        <input type="text" class="form-control" placeholder="Text input"/>
-                        <button class="btn" style="width: 212px; overflow: hidden; position: relative; margin: 20px;">Search!</button>
+
+                        <form action="#" th:action="@{/processSearch}" th:object="${searchEvent}" method="post">
+                            <input type="text" class="form-control" placeholder="..." th:field="*{name}" />
+                            <button type="submit" class="btn" style="width: 212px; overflow: hidden; position: relative; margin: 20px;">Search!</button>
+                        </form>
+                        <!--<input type="text" class="form-control" placeholder="Text input"/>-->
+                        <!--<button class="btn" style="width: 212px; overflow: hidden; position: relative; margin: 20px;">Search!</button>-->
                         <hr class="intro-divider"/>
                         <div class="list-group" style="height: 307px; overflow: hidden;">
 

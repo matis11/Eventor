@@ -1,20 +1,15 @@
 package com.eventor;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.DriverManager;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import com.eventor.model.entity.SearchEvent;
 import com.eventor.model.entity.Event;
 import com.eventor.model.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -41,6 +36,7 @@ public class IndexController {
             emptyResult = false;
         }
 
+        model.put("searchEvent", new SearchEvent());
         model.put("message", events);
         model.put("emptyResult", emptyResult);
 
@@ -55,6 +51,23 @@ public class IndexController {
         event = new Event("C# kurs dla poczatkujacych", "Najlepszy kurs!", 1, 100);
         eventRepository.save(event);
         return "createDatabase";
+    }
+
+
+    @RequestMapping(value = "/processSearch", method= RequestMethod.POST)
+    public String processFormSearch(@ModelAttribute(value="searchEvent") SearchEvent searchEvent, Map<String, Object> model) {
+        Iterable<Event> events = eventRepository.findAll();
+        List<Event> foundEvents = new ArrayList();
+        for (Event event : events) {
+            if(event.getName().contains(searchEvent.getName()) && !searchEvent.getName().isEmpty()) {
+                foundEvents.add(event);
+            }
+        }
+
+        model.put("events", foundEvents);
+        model.put("string", searchEvent.getName());
+
+        return "searchForEvent";
     }
 
 
