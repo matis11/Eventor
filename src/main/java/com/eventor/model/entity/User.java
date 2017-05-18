@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Basic entity for event handling. Annotated as default Spring model class.
+ * Basic entity for user handling. Annotated as default Spring model class.
  */
 
 @Entity
@@ -73,15 +73,7 @@ public class User {
         this.password = password;
     }
 
-//    /**
-//     * User events description
-//     * @return User events
-//     */
-//
-//
-//    public List getEvents() {
-//        return events;
-//    }
+
 
 
 

@@ -44,6 +44,10 @@ public class IndexController {
     }
 
 
+    /**
+     * Function for create sample database
+     * @return String containing the name of endpoint
+     */
     @RequestMapping("/createDatabase")
     public String createDatabase() {
         Event event = new Event("Swift 3.0 iOS", "Jakis tytul", 2, 200);
@@ -53,7 +57,10 @@ public class IndexController {
         return "createDatabase";
     }
 
-
+    /**
+     * Function for search events in database
+     * @return String containing the name of endpoint
+     */
     @RequestMapping(value = "/processSearch", method= RequestMethod.POST)
     public String processFormSearch(@ModelAttribute(value="searchEvent") SearchEvent searchEvent, Map<String, Object> model) {
         Iterable<Event> events = eventRepository.findAll();

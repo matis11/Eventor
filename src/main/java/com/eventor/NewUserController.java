@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
- * A class for getting the index.html and manage SQL database connection.
+ * A class for getting the newUser.html and creating new user account.
  */
 @Controller
 public class NewUserController {
@@ -39,6 +39,10 @@ public class NewUserController {
         return "newUser";
     }
 
+    /**
+     * Function for create new User in Database
+     * @return String containing the name of endpoint
+     */
     @RequestMapping(value = "/processForm", method= RequestMethod.POST)
     public String processForm(@ModelAttribute(value="user") User user, Map<String, Object> model) {
         userRepository.save(user);

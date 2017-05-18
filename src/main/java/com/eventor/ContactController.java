@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 /**
- * A class for getting the index.html and manage SQL database connection.
+ * A class for getting the contact.html
  */
 @Controller
 public class ContactController {
